@@ -1,6 +1,6 @@
 # Car-Rental-Application-Spring---Thymeleaf---PostgreSQL-
 
-This repository contains a group semester project for an University Course together with its reports. 
+This repository contains a group semester project for an University course together with its reports. 
 This account does not take responsibility for any sorts of plagiarism about the repositories contents. 
 And discourages any action that goes againts the rules of academic  integrity.
 
