@@ -18,5 +18,5 @@ Rest of the group members helped us with finishing all of the pages with their b
 
 ## Summary
 
-This is a car rental system designed and imlemented for a database systems course taken the university.
-It is using Thymeleaf as its templating engine and levreges Spring Frameworks MVC model and Spring's JDBC together with a custom abstraction layer written in between. (Almost everything about the abstractin is under the logic folder inside the source code.) While designing and implementing this project I once again noticed the challanges no javascript brings with the design of the server. And I enjoyed to learn a different perspective which Thymeleaf together with Spring tries to bring into the picture.  
+This is a car rental system designed and imlemented for a database systems course.
+It is using Thymeleaf as its templating engine and levreges Spring's MVC and JDBC packages together with a custom abstraction layer written in between. (Almost everything about the abstraction is under the logic folder inside the source code.) While designing and implementing this project I once again noticed the challanges no javascript brings with the design of the server. And I enjoyed to learn a different perspective which Thymeleaf together with Spring tries to bring into the picture.  
