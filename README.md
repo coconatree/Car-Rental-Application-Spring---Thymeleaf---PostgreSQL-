@@ -1,4 +1,4 @@
-# Licensing
+## Licensing
 
 Contents of this repository is not open for public or any commercial use.
 Its hereby declared that this using this repositories contents for any commercial use is not permited.    
