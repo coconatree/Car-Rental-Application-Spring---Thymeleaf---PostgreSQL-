@@ -1,3 +1,5 @@
+# Content of this repository is not open for public use
+
 # Car-Rental-Application-Spring---Thymeleaf---PostgreSQL-
 
 This repository contains a group semester project for an University course together with its reports. 
