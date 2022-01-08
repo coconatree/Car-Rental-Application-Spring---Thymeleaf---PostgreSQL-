@@ -1,4 +1,7 @@
-# Contents of this repository is not open for public use
+# Licensing
+
+Contents of this repository is not open for public or any commercial use.
+Its hereby declared that this using this repositories contents for any commercial use is not permited.    
 
 ## Car-Rental-Application-Spring---Thymeleaf---PostgreSQL-
 
