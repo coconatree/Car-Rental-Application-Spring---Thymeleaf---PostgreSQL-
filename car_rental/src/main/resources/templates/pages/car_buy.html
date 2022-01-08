@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Buy</title>
+    <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+    <nav th:replace = "fragments/template :: navbar"></nav>
+
+    <div class ="container">
+        <br>
+        <br>
+        <div class = "row justify-content-center">
+            <div class = "col-md-6">
+                <form method = "post" th:actiom = "@{manager/purchase}" th:object = "${car}">
+                    <div class = "row">
+                        <label for = "brand" class="form-label">Brand</label>
+                        <input id = "brand" class = "form-control" type = "text" th:field="${car.brand}" placeholder="brand"/>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <label for = "model" class="form-label">Model</label>
+                        <input id = "model" class = "form-control" type = "text" th:field="${car.model}" placeholder="model"/>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <label for = "gear_type" class = "form-label">Gear type</label>
+                        <input id = "gear_type" class ="form-control"type = "text" th:field="${car.gearType}" placeholder="gearType"/>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <label for = "price" class="form-label">Price</label>
+                        <input max = 2000000 id = "price" class = "form-control" type = "number" th:field="${car.price}" placeholder="price"/>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <label for = "price_per_day" class="form-label">Price Per Day</label>
+                        <input max = 2000 id = "price_per_day" class = "form-control" type = "number" th:field="${car.pricePerDay}" placeholder="price per day"/>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <button class = "btn btn-primary" type = "submit">Buy new car</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div style = "min-height: 5vh;" class = "row"></div>
+    </div>
+</body>
+</html>

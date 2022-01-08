@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Request</title>
+    <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+<nav th:replace = "fragments/template :: navbar"></nav>
+<br>
+<br>
+<br>
+<div class = "container">
+    <div class = "row justify-content-center">
+        <div class = "col-md-6">
+            <div class = "container">
+                <form method = "POST" th:actiom = "@{/car/request}" th:object = "${request}">
+                    <div class = "row form-control-">
+                        <label class = "form-label" >Starting Branch</label>
+                        <p class = "form-label" th:text = "${startingBranch.branchName}"></p>
+                         <input type = "hidden" name="startingBranch" th:value = "${startingBranchValue.id}"/>
+                    </div>
+                    <br>
+                    <div class = "row form-control-">
+                        <label class = "form-label" for = "ending_branch">Ending Branch</label>
+                        <select  id = "ending_branch" class = "col-5 form-control p-2" th:field = "${request.endingBranch}">
+                            <option th:each  = "branch : ${branches}"
+                                    th:value = "${branch.id}"
+                                    th:text  = "${branch.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class ="row">
+                        <button class = "btn btn-primary" type = "submit">Make Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace = "fragments/template :: script"></div>
+</body>
+</html>

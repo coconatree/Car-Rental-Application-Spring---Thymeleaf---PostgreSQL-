@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${ppTitle}"></title>
+    <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+<nav th:replace = "fragments/template :: navbar"></nav>
+
+<div class="row text-center">
+    <h2>Hello <span th:text = "${username}"></span>!</h2>
+</div>
+
+<div class="col">
+    <div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">My Reservations</h5>
+                <p class="card-text">Display and manage your reservations.</p>
+                <a th:href="@{/customer/reservations}" class="btn btn-dark">View</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Account Details</h5>
+                <p class="card-text">View and edit your account details.</p>
+                <a th:href="@{/customer/info}" class="btn btn-dark">View</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">My Shared Rides</h5>
+                <p class="card-text">Display Your Shared Rides</p>
+                <a th:href="@{/customer/myrides}" class="btn btn-dark">View</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

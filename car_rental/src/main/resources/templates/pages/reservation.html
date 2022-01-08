@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+    <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+<nav th:replace = "fragments/template :: navbar"></nav>
+<br>
+
+<div class = "container">
+    <br>
+    <br>
+    <div class ="row justify-content-center">
+        <div class = "col-md-6">
+            <div class = "container">
+                <form method = "post" th:actiom = "@{/car/reservation}" th:object = "${reservationForm}">
+                    <div class = "row">
+                        <label for = "staring_date">Starting Date</label>
+                        <input id = "staring_date" type = "date" placeholder = "Starting Date" th:field = "${reservationForm.startingDate}"/>
+                    </div>
+                    <br>
+                    <br>
+                    <div class = "row">
+                        <label for = "ending_date">Ending Date</label>
+                        <input id = "ending_date" type = "date" placeholder = "Ending Date" th:field = "${reservationForm.endingDate}"/>
+                    </div>
+                    <br>
+                    <br>
+                    <div class ="row">
+                        <label>Depart From</label>
+                        <p class = "form-label" th:text = "${departureBranch.branchName}"></p>
+                        <input type = "hidden" name="departFrom" th:value = "${departureBranch.id}"/>
+                    </div>
+                    <br>
+                    <br>
+                    <div class= "row">
+                        <input id = "insurance_checkbox" type = "checkbox" th:field = "${reservationForm.hasInsurance}"/>
+                        <label for = "insurance_checkbox" class = "form-label">Insurance</label>
+                    </div>
+                    <br>
+                    <br>
+                    <div class = "row">
+                        <input id = "shared_checkbox" type = "checkbox" th:field = "${reservationForm.shared}"/>
+                        <label for = "shared_checkbox" class =  "form-label">Shared</label>
+                    </div>
+                    <br>
+                    <br>
+                    <button class = "btn btn-primary" type = "submit">Make Reservation</button>
+                </form>
+            </div>
+            <div style = "min-height: 5vh;" class = "row">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace = "fragments/template :: script"></div>
+</body>
+</html>

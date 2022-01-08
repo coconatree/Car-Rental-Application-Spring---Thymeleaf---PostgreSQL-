@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>User Information</title>
+    <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+<nav th:replace = "fragments/template :: navbar"></nav>
+
+<div class="container">
+    <p> Name: <span th:text="${userInfo.firstName}"></span> <span th:text="${userInfo.middleName}"></span></p>
+    <p> Surname: <span th:text="${userInfo.lastName}"></span></p>
+    <p> Driving License ID: <span th:text="${userInfo.drivingLicenseId}"></span></p>
+    <p> Email: <span th:text="${userInfo.email}"></span></p>
+    <p> Balance: <span th:text="${userInfo.point}"></span></p>
+    <form th:action = "@{/customer/info}" th:object = "${balanceAmount}" method = "post">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="amount">Add Balance</label>
+                <input th:field = "${balanceAmount.balance}" type="number" class="form-control" id="amount">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Balance</button>
+    </form>
+
+    <div class="row">
+    <a class="btn btn-dark col-md-6" th:href="@{/customer/changepassword}">Change Password</a>
+    </div>
+</div>
+</body>
+</html>

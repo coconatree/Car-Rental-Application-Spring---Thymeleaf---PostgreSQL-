@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Review</title>
+    <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+<nav th:replace = "fragments/template :: navbar"></nav>
+
+<div class = "container">
+    <div style="min-height:  5vh"></div>
+    <br>
+    <div class = "row justify-content-center">
+        <div class = "col-md-8">
+            <div class="container">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Start Branch</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Starting Date</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Join</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="res: ${share_rides}">
+                        <form method = "post" th:object="${shareForm}" th:action="@{/customer/share}">
+                            <td th:text="${res.startBranch}"></td>
+                            <td th:text="${res.price}"></td>
+                            <td th:text="${res.startDate}"></td>
+                            <td th:text="${res.brand}"></td>
+                            <td th:text="${res.model}"></td>
+                            <td>
+                                <input type="hidden" th:value="${res.rideId}" name="rideId"/>
+                                <input type="hidden" th:value="${res.startBranchInt}" name="startBranch"/>
+                                <button class = "btn btn-primary" type = "submit">Join</button>
+                            </td>
+                        </form>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace = "fragments/template :: script"></div>
+</body>
+</html>

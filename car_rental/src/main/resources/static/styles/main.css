@@ -1,0 +1,133 @@
+html, body {
+    padding:  0;
+    margin:    0;
+
+    width:  100%;
+    height: 100%;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: black;
+}
+
+.min-h-5{
+    min-height: 5vh;
+}
+
+.custom-checkbox-set {
+    display: grid;
+    align-self: center;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2px;
+    font-size: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    padding: 2px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+}
+
+.custom-flex-container {
+    height: 100%;
+    width:  100%;
+
+    display: flex;
+
+    align-content:   center;
+    justify-content: center;
+}
+
+.custom-car-list-page-grid-container  {
+    display:  grid;
+    grid-template-columns: repeat(1, 0.75fr 1.25fr);
+    gap: 2vh;
+    grid-auto-rows: minmax(500px, auto);
+}
+
+.car-list-field-set-grid {
+    display:  grid;
+    grid-template-columns: repeat(3, 0.25fr 1.25fr);
+    gap: 1px;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.container-direction-horizontal {
+    flex-direction: row;
+}
+
+.container-direction-vertical {
+    flex-direction: column;
+}
+
+.customer-border {
+    border: 1px rgba(33, 37, 41, 0.78);
+    border-radius: 5px;
+}
+
+.custom-shadow {
+    box-shadow: -10px 0px 45px 7px rgba(33, 37, 41, 0.78);
+    -webkit-box-shadow: -10px 0px 45px 7px rgba(33, 37, 41, 0.78);
+    -moz-box-shadow: -10px 0px 45px 7px rgba(33, 37, 41, 0.78);
+}
+
+.w-000 { width: 0;        }
+.w-010 { width: 10%;   }
+.w-020 { width: 20%;   }
+.w-030 { width: 30%;   }
+.w-040 { width: 40%;   }
+.w-050 { width: 50%;   }
+.w-060 { width: 60%;   }
+.w-070 { width: 70%;   }
+.w-080 { width: 80%;   }
+.w-090 { width: 90%;   }
+.w-100 { width: 100%; }
+
+.h-000 { height: 0;        }
+.h-010 { height: 10%;   }
+.h-020 { height: 20%;   }
+.h-030 { height: 30%;   }
+.h-040 { height: 40%;   }
+.h-050 { height: 50%;   }
+.h-060 { height: 60%;   }
+.h-070 { height: 70%;   }
+.h-080 { height: 80%;   }
+.h-090 { height: 90%;   }
+.h-100 { height: 100%; }
+
+.m-00 { margin: 0;       }
+.m-01 { margin: 1vh;   }
+.m-02 { margin: 2vh;   }
+.m-03 { margin: 3vh;   }
+.m-04 { margin: 4vh;   }
+.m-05 { margin: 5vh;   }
+.m-06 { margin: 6vh;   }
+.m-07 { margin: 7vh;   }
+.m-08 { margin: 8vh;   }
+.m-09 { margin: 9vh;   }
+.m-10 { margin: 10vh; }
+
+.p-00 { padding: 0;       }
+.p-01 { padding: 1vh;   }
+.p-02 { padding: 2vh;   }
+.p-03 { padding: 3vh;   }
+.p-04 { padding: 4vh;   }
+.p-05 { padding: 5vh;   }
+.p-06 { padding: 6vh;   }
+.p-07 { padding: 7vh;   }
+.p-08 { padding: 8vh;   }
+.p-09 { padding: 9vh;   }
+.p-10 { padding: 10vh; }

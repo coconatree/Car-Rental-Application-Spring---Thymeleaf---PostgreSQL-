@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>My Reservations</title>
+    <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+<nav th:replace = "fragments/template :: navbar"></nav>
+
+<div>Your Reservations: </div>
+
+<p th:if = ${!hasReservation}> You have no reservations</p>
+<div th:if = "${hasReservation == true}">
+
+<p>Waiting Reservations <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#waiting" aria-expanded="false" aria-controls="waiting">
+    Click to See
+</button></p>
+<div class="collapse" id="waiting">
+    <div class="card card-body">
+        <p th:if = "${!hasWaiting}"> You do not have any waiting reservations.</p>
+        <table class="table" th:if="${hasWaiting}">
+            <thead>
+            <tr>
+                <th scope="col">Res. No</th>
+                <th scope="col">Starting Date</th>
+                <th scope="col">Ending Date</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody th:each="res : ${customerReservations}">
+            <tr th:if = "${res.reservation.status == 100}">
+
+                <td th:text="${res.reservation.reservationId}">
+
+                </td>
+                <td th:text="${res.reservation.startingDate}"></td>
+                <td th:text="${res.reservation.endingDate}"></td>
+                <td>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#details" aria-expanded="false" aria-controls="details">
+                        See Details
+                    </button>
+                    <div class="collapse" id="details">
+                        <div class="card card-body">
+                            <p>Cost: <span th:text="${res.reservation.totalCost}"></span></p>
+                            <p>Status:  <span th:text="${res.reservation.statusStr}"></span></p>
+                            <p>Car Model&Brand: <span th:text="${res.car.model}"></span> <span th:text="${res.car.brand}"></span></p>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<p>Approved Reservations <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#approved" aria-expanded="false" aria-controls="approved">
+    Click to See
+</button><a class = "btn btn-dark" th:href = "@{/customer/return}">Go to Return Car Tab</a></p>
+<div class="collapse" id="approved">
+    <div class="card card-body">
+        <p th:if = "${!hasApproved}"> You do not have any approved reservations.</p>
+        <table class="table" th:if="${hasApproved}">
+            <thead>
+            <tr>
+                <th scope="col">Res. No</th>
+                <th scope="col">Starting Date</th>
+                <th scope="col">Ending Date</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody th:each="res : ${customerReservations}">
+            <tr th:if = "${res.reservation.status == 200}">
+
+                <td th:text="${res.reservation.reservationId}">
+
+                </td>
+                <td th:text="${res.reservation.startingDate}"></td>
+                <td th:text="${res.reservation.endingDate}"></td>
+                <td>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#details2" aria-expanded="false" aria-controls="details2">
+                        See Details
+                    </button>
+                    <div class="collapse" id="details2">
+                        <div class="card card-body">
+                            <p>Cost: <span th:text="${res.reservation.totalCost}"></span></p>
+                            <p>Status:  <span th:text="${res.reservation.statusStr}"></span></p>
+                            <p>Car Model&Brand: <span th:text="${res.car.model}"></span> <span th:text="${res.car.brand}"></span></p>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<p>Declined Reservations <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#declined" aria-expanded="false" aria-controls="declined">
+    Click to See
+</button></p>
+<div class="collapse" id="declined">
+    <div class="card card-body">
+        <p th:if = "${!hasDeclined}"> You do not have any declined reservations.</p>
+        <table class="table" th:if="${hasDeclined}">
+            <thead>
+            <tr>
+                <th scope="col">Res. No</th>
+                <th scope="col">Starting Date</th>
+                <th scope="col">Ending Date</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody th:each="res : ${customerReservations}">
+            <tr th:if = "${res.reservation.status == 300}">
+
+                <td th:text="${res.reservation.reservationId}">
+
+                </td>
+                <td th:text="${res.reservation.startingDate}"></td>
+                <td th:text="${res.reservation.endingDate}"></td>
+                <td><p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#details3" aria-expanded="false" aria-controls="details3">
+                        See Details
+                    </button>
+                    <div class="collapse" id="details3">
+                        <div class="card card-body">
+                            <p>Cost: <span th:text="${res.reservation.totalCost}"></span></p>
+                            <p>Status:  <span th:text="${res.reservation.statusStr}"></span></p>
+                            <p>Car Model&Brand: <span th:text="${res.car.model}"></span> <span th:text="${res.car.brand}"></span></p>
+                        </div>
+                    </div>
+                    </p>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<p>Finished Reservations <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#finished" aria-expanded="false" aria-controls="finished">
+    Click to See
+</button></p>
+<div class="collapse" id="finished">
+    <div class="card card-body">
+        <p th:if = "${!hasFinished}"> You do not have any finished reservations.</p>
+        <table class="table" th:if="${hasFinished}">
+            <thead>
+            <tr>
+                <th scope="col">Res. No</th>
+                <th scope="col">Starting Date</th>
+                <th scope="col">Ending Date</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody th:each="res : ${customerReservations}">
+            <tr th:if = "${res.reservation.status == 500}">
+
+                <td th:text="${res.reservation.reservationId}">
+
+                </td>
+                <td th:text="${res.reservation.startingDate}"></td>
+                <td th:text="${res.reservation.endingDate}"></td>
+                <td><p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#details5" aria-expanded="false" aria-controls="details5">
+                        See Details
+                    </button>
+                    <div class="collapse" id="details5">
+                        <div class="card card-body">
+                            <p>Cost: <span th:text="${res.reservation.totalCost}"></span></p>
+                            <p>Status:  <span th:text="${res.reservation.statusStr}"></span></p>
+                            <p>Car Model&Brand: <span th:text="${res.car.model}"></span> <span th:text="${res.car.brand}"></span></p>
+                            <p>Waiting for our crew to check any damages...</p>
+                        </div>
+                    </div>
+                    </p>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<p>Damage Reported Reservations <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#dreport" aria-expanded="false" aria-controls="dreport">
+    Click to See
+</button> <a class = "btn btn-dark" th:href = "@{/customer/pay}">Go to Payment Tab</a>
+</p>
+<div class="collapse" id="dreport">
+    <div class="card card-body">
+        <p th:if = "${!hasDReport}"> You do not have any reservations damage report created.</p>
+        <table class="table" th:if="${hasDReport}">
+            <thead>
+            <tr>
+                <th scope="col">Res. No</th>
+                <th scope="col">Starting Date</th>
+                <th scope="col">Ending Date</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody th:each="res : ${customerReservations}">
+            <tr th:if = "${res.reservation.status == 400}">
+
+                <td th:text="${res.reservation.reservationId}">
+
+                </td>
+                <td th:text="${res.reservation.startingDate}"></td>
+                <td th:text="${res.reservation.endingDate}"></td>
+                <td><p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#details4" aria-expanded="false" aria-controls="details2">
+                        See Details
+                    </button>
+                    <div class="collapse" id="details4">
+                        <div class="card card-body">
+                            <p>Cost: <span th:text="${res.reservation.totalCost}"></span></p>
+                            <p>Status:  <span th:text="${res.reservation.statusStr}"></span></p>
+                            <p>Car Model&Brand: <span th:text="${res.car.model}"></span> <span th:text="${res.car.brand}"></span></p>
+                            <p>Additional Cost: <span th:text="${res.reservation.penalty}"></span></p>
+                        </div>
+                    </div>
+                    </p>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<p>Non-Damage Reported Reservations <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#intact" aria-expanded="false" aria-controls="intact">
+    Click to See
+</button><a class = "btn btn-dark" th:href = "@{/customer/pay}">Go to Payment Tab</a></p>
+<div class="collapse" id="intact">
+    <div class="card card-body">
+        <p th:if = "${!hasIntact}"> You do not have any approved reservations.</p>
+        <table class="table" th:if="${hasIntact}">
+            <thead>
+            <tr>
+                <th scope="col">Res. No</th>
+                <th scope="col">Starting Date</th>
+                <th scope="col">Ending Date</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody th:each="res : ${customerReservations}">
+            <tr th:if = "${res.reservation.status == 700}">
+
+                <td th:text="${res.reservation.reservationId}">
+
+                </td>
+                <td th:text="${res.reservation.startingDate}"></td>
+                <td th:text="${res.reservation.endingDate}"></td>
+                <td>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#details7" aria-expanded="false" aria-controls="details7">
+                        See Details
+                    </button>
+                    <div class="collapse" id="details7">
+                        <div class="card card-body">
+                            <p>Cost: <span th:text="${res.reservation.totalCost}"></span></p>
+                            <p>Status:  <span th:text="${res.reservation.statusStr}"></span></p>
+                            <p>Car Model&Brand: <span th:text="${res.car.model}"></span> <span th:text="${res.car.brand}"></span></p>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+
+<p>Paid Reservations <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#paid" aria-expanded="false" aria-controls="paid">
+    Click to See
+</button></p>
+<div class="collapse" id="paid">
+    <div class="card card-body">
+        <p th:if = "${!hasPaid}"> You do not have any paid reservations.</p>
+        <table class="table" th:if="${hasPaid}">
+            <thead>
+            <tr>
+                <th scope="col">Res. No</th>
+                <th scope="col">Starting Date</th>
+                <th scope="col">Ending Date</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody th:each="res : ${customerReservations}">
+            <tr th:if = "${res.reservation.status == 600}">
+
+                <td th:text="${res.reservation.reservationId}">
+
+                </td>
+                <td th:text="${res.reservation.startingDate}"></td>
+                <td th:text="${res.reservation.endingDate}"></td>
+                <td><p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#details6" aria-expanded="false" aria-controls="details6">
+                        See Details
+                    </button>
+                    <div class="collapse" id="details6">
+                        <div class="card card-body">
+                            <p>Cost: <span th:text="${res.reservation.totalCost}"></span></p>
+                            <p>Status:  <span th:text="${res.reservation.statusStr}"></span></p>
+                            <p>Car Model&Brand: <span th:text="${res.car.model}"></span> <span th:text="${res.car.brand}"></span></p>
+
+                            <p th:if = "${!res.reservation.hasReview}">
+                            <a class = "btn btn-dark" th:href = "@{'/customer/review?resId=' + ${res.reservation.reservationId}}">Review Reservation</a>
+                            </p>
+                        </div>
+                    </div>
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+</html>

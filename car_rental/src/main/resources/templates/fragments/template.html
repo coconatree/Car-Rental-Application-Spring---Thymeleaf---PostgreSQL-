@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <div th:fragment="style">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link th:href="@{/styles/main.css}" rel="stylesheet" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+        <style>
+
+            td , th{
+                text-align: center;
+            }
+
+            table {
+                position: relative;
+                z-index: 1;
+                background-color: whitesmoke;
+                max-width: 84%;
+                border-radius: 30px;
+                margin: 0 auto 100px;
+                padding: 20px 45px 45px;
+                text-align: center;
+                box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+            }
+
+        </style>
+    </div>
+
+</head>
+
+<body>
+
+<nav class = "navbar navbar-expand-lg navbar-dark bg-primary" th:fragment = "navbar">
+    <div class = "collapse navbar-collapse m-2">
+        <ul class = "navbar-nav navbar-header mr-auto">
+            <a class="navbar-brand" th:href = "@{/}">
+                Car Rental System
+            </a>
+        </ul>
+        <ul class = "navbar-nav navbar-right ms-auto">
+            <li th:if = "${isEmployee}" class = "nav-item">
+                <a class = "nav-link" th:href = "@{/employee/reservation}">Pending Reservations</a>
+            </li>
+            <li th:if = "${isEmployee}" class = "nav-item">
+                <a class = "nav-link" th:href = "@{/employee/reservation/report}">Finished Reservations</a>
+            </li>
+            <li th:if = "${isEmployee}" class = "nav-item">
+                <a class = "nav-link" th:href = "@{/employee/request}">Pending Requests</a>
+            </li>
+            <li th:if = "${isCustomer}">
+                <a class ="nav-link" th:href = "@{/customer/share}">Share Ride</a>
+            </li>
+            <li th:if = "${isCustomer}" class = "nav-item">
+                <a class = "nav-link" th:href = "@{/}">Select a Branch</a>
+            </li>
+            <li th:if = "${isCustomer}">
+                <a class ="nav-link" th:href = "@{/customer/return}">Return Car</a>
+            </li>
+            <li th:if = "${isCustomer}">
+                <a class ="nav-link" th:href = "@{/customer/profile}">Profile</a>
+            </li>
+            <li th:if = "${isManager}">
+                <a class ="nav-link" th:href = "@{/manager/hire}">Hire Employee</a>
+            </li>
+            <li th:if = "${isManager}">
+                <a class ="nav-link" th:href = "@{/manager/purchase}">Purchase Car</a>
+            </li>
+            <li th:if="${isLoggedIn}">
+                <a class = "nav-link" th:href = "@{/logout}">Logout</a>
+            </li>
+            <li th:unless="${isLoggedIn}">
+                <a class = "nav-link" th:href = "@{/login}">Login / Register</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+</body>
+
+<footer>
+
+</footer>
+
+<div th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossOrigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossOrigin="anonymous"></script>
+</div>
+</html>

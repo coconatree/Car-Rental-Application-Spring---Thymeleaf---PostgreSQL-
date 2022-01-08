@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http//www.thymeleaf.org"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http//www.thymeleaf.org ">
+
+<head>
+    <title>Review Page</title>
+    <div th:replace = "fragments/template :: style"></div>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        form {
+            position: relative;
+            z-index: 1;
+            background-color: #316cf4;
+            max-width: 360px;
+            border-radius: 30px;
+            margin: 0 auto 100px;
+            padding: 20px 45px 45px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+    </style>
+</head>
+
+<body style="background: rgb(2,0,36);
+            background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(49,108,244,1) 35%, rgba(0,212,255,1) 100%);">
+<div class = "container">
+    <div class = "row" style = "min-height: 5vh"></div>
+    <div class = "row justify-content-center">
+        <div class = "col-md-6">
+            <form class = "form-control-lg" method="post" th:action = "@{/customer/review}" th:object = "${userReviewForm}">
+                <div class = "row p-2">
+                    <div class = "col">
+                        <label>Depart From</label>
+                        <input type = "hidden" name = "reservationId" th:value = "${rID}"/>
+                        <label style="color: whitesmoke; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;" for = "star" class = "form-label">Rate (1-5)</label>
+                        <select class="form-control" id="star" th:field = "${userReviewForm.star}">
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class = "row p-2">
+                    <div class = "col">
+                        <label style="color: whitesmoke; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;" for = "content" class = "form-label">Your Review/Feedback</label>
+                        <textarea class="form-control" id="content" rows="5" th:field = "${userReviewForm.content}" placeholder = "Please make a comment!"
+                                  name = "content">
+                        </textarea>
+                    </div>
+                </div>
+                <div class = "row p-2">
+                    <div class = "col p-2">
+                        <button style="color: whitesmoke; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;" type = "submit" class = "btn btn-info">Submit Review</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

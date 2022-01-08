@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Damage Check</title>
+    <div th:replace = "fragments/template :: style"></div>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        td , th{
+            text-align: center;
+        }
+        h3 {
+            text-align:center;
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            padding: 20px;
+        }
+        table { position: relative; z-index: 1; background-color: whitesmoke;
+            max-width: 84%; border-radius: 30px;
+            margin: 0 auto 100px; padding: 45px; padding-top: 20px; text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); }
+    </style>
+</head>
+<body>
+<nav th:replace = "fragments/template :: navbar"></nav>
+
+<h3>Finished Reservations</h3>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Undamaged Car</th>
+        <th scope="col">Reservation No</th>
+        <th scope="col">Reservation Cost</th>
+        <th scope="col">Departure Branch</th>
+        <th scope="col">Destination Branch</th>
+        <th scope="col">Damage Report</th>
+        <th scope="col">Damage Cost</th>
+        <th scope="col">Damaged Car</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="res, iter: ${customerReservations}">
+        <td>
+            <a th:href = "@{'/employee/reservation/report/undamaged?resId='+ ${res.reservationId}}" class = "btn btn-success"><span class="material-icons">
+            &#xe876;</span></a>
+        </td>
+        <td th:text="${res.reservationId}"></td>
+        <td th:text="${res.totalCost}"></td>
+        <td th:text="${departureBranches[iter.index]}"></td>
+        <td th:text="${destinationBranches[iter.index]}"></td>
+        <form  th:action="@{'/employee/reservation/report/damaged?resId='+ ${res.reservationId}}" th:object="${report}" method="POST"  id="report">
+        <td>
+            <textarea th:field="*{message}" placeholder="Describe the damage..." rows="4" cols="20"></textarea>
+        </td>
+            <td>
+                <input placeholder="0.00" th:field="*{cost}" max="1000000.00" type="number" min="0.00" step="0.1" />
+            </td>
+        <td>
+                <button type="submit" class = "btn btn-danger">Report</button>
+        </td>
+        </form>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

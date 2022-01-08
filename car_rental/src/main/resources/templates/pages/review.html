@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Car List</title>
+    <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+    <nav th:replace = "fragments/template :: navbar"></nav>
+
+    <div class = "container">
+        <div class = "row justify-content-center">
+            <div class = "col-md-6">
+                <div class = "container">
+                    <div th:if = "${hasReview}">
+                        <div class = "row" th:each = "reviewAndDate : ${reviewList}">
+                            <div class = "container">
+                                <br>
+                                <br>
+                                <div class = "row">
+                                    <p class = "form-label">
+                                        <h5>Starting Date</h5>
+                                        <span th:text = "${reviewAndDate.startingDate}"></span>
+                                    </p>
+                                </div>
+                                <div class = "row">
+                                    <p class = "form-label">
+                                    <h5>Ending Date</h5>
+                                    <span th:text = "${reviewAndDate.endingDate}"></span>
+                                    </p>
+                                </div>
+                                <br>
+                                <hr>
+                                <div class = "row">
+                                    <h5>Content</h5>
+                                </div>
+                                <div class = "row">
+                                    <p class ="form-label" th:text = "${reviewAndDate.review.content}"></p>
+                                </div>
+                                <br>
+                                <hr>
+                                <div>
+                                    <h5>Stars</h5>
+                                </div>
+                                <div class = "row">
+                                    <p class ="form-label">
+                                        <span th:text = "${reviewAndDate.review.star}"></span>
+                                    </p>
+                                </div>
+                                <br>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "row" th:unless = "${hasReview}">
+                        <h4>This car has no reviews</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace = "fragments/template :: script"></div>
+</body>
+</html>

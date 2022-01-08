@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Review</title>
+    <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+    <nav th:replace = "fragments/template :: navbar"></nav>
+
+    <div class = "container">
+        <br>
+        <br>
+        <div class = "row">
+            <div class = "col-md-8">
+                <div class = "container m-2 p-2">
+                    <div class = "row rounded-1 shadow border-1" th:each = "review : ${reviewList}">
+                        <div class = "container p-2">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace = "fragments/template :: script"></div>
+</body>
+</html>

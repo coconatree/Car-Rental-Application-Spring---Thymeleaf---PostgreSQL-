@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Registration Page</title>
+    <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+    <div class = "container">
+        <div class = "row justify-content-center">
+            <div class = "col-md-6">
+                <div class ="container">
+                    <form method = "post" th:actiom = "@{/register}" th:object = "${customerForm}">
+                        <br>
+                        <div class = "row">
+                            <label class = "form-label"    for = "first_name">First name</label>
+                            <input class = "form-control" id = "first_name" type = "text" th:field="${customerForm.firstName}" placeholder="First name"/>
+                        </div>
+                        <br>
+                        <div class = "row">
+                            <label for = "middle_name" class = "form-label">Middle name</label>
+                            <input id = "middle_name" class = "form-control" type = "text" th:field="${customerForm.middleName}" placeholder="Middle name"/>
+                        </div>
+                        <br>
+                        <div class = "row">
+                            <label for = "last_name" class = "form-label">Last name</label>
+                            <input id = "last_name" class = "form-control" type = "text" th:field="${customerForm.lastName}" placeholder="Last name"/>
+                        </div>
+                        <br>
+                        <div class = "row">
+                            <label for = "password" class = "form-label">Password</label>
+                            <input id = "password" class = "form-control" type = "password" th:field="${customerForm.password}" placeholder="Password"/>
+                        </div>
+                        <br>
+                        <div class = "row">
+                            <label for = "email" class = "form-label">Email</label>
+                            <input id = "email" class = "form-control" type = "text" th:field="${customerForm.email}" placeholder="Email"/>
+                        </div>
+                        <br>
+                        <div class = "row">
+                            <label  for = "driving_license_id" class = "form-label">Driving License</label>
+                            <input max ="200000" id = "driving_license_id" class= "form-control" type = "number" th:field="${customerForm.drivingLicenseId}" placeholder="Driving license id"/>
+                        </div>
+                        <br>
+                        <div class = "row">
+                            <button class = "btn btn-primary" type = "submit">Register</button>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+                <div style = "min-height: 5vh" class = "row"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

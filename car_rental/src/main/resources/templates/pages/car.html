@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Car List</title>
+    <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+    <nav th:replace = "fragments/template :: navbar"></nav>
+
+    <div class = "container-fluid">
+        <div class = "row m-2">
+            <div class = "col-md-4 rounded-2">
+
+                <!-- Car filter form -->
+
+                <form  class = "container-fluid m-1 p-2" method ="post" th:action = "@{/car}" th:object = "${carFilterForm}">
+                    <div class = "row">
+                        <h5 class = "col-md-5">Select A Branch</h5>
+                        <select  id = "branch" class = "col-md-5 form-control p-2" th:field = "${carFilterForm.preferredBranch}">
+                            <option th:each  = "branch : ${branches}"
+                                    th:value = "${branch.id}"
+                                    th:text   = "${branch.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <div class = "container-fluid">
+                            <div class = "row">
+                                <div class = "col-md-12">
+                                    <h5>Model</h5>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-12">
+                                    <div class = "container-fluid">
+                                        <div class = "row">
+                                            <input  class = "col-md-6 justify-content-start"
+                                                    style   = "align-self: center;"
+                                                    type   = "checkbox"
+                                                    name = "model_fields"
+                                                    th:each  ="model : ${modelList}"
+                                                    th:text   = "${model.value}"
+                                                    th:value = "${model.value}"
+                                                    th:field   = "${carFilterForm.models}"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class = "row">
+                                <div class = "col-md-12">
+                                    <h5>Brand</h5>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-12">
+                                    <div class = "container-fluid">
+                                        <div class = "row">
+                                            <input  class = "col-md-6 justify-content-start"
+                                                    style = "align-self: center;"
+                                                    type   = "checkbox"
+                                                    name = "brand_fields"
+                                                    th:each  ="brand : ${brandList}"
+                                                    th:text   = "${brand.value}"
+                                                    th:value = "${brand.value}"
+                                                    th:field   = "${carFilterForm.brands}"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class = "row">
+                                <div class = "col-sm-12">
+                                    <h5>Gear Type</h5>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-12">
+                                    <div class = "container-fluid">
+                                        <div class = "row">
+                                            <input
+                                                    class = "col-md-6 justify-content-start"
+                                                    style = "align-self: center;"
+                                                    type   = "checkbox"
+                                                    name = "gear_type_fields"
+                                                    th:each  ="gearType : ${gearList}"
+                                                    th:text   = "${gearType.value}"
+                                                    th:value = "${gearType.value}"
+                                                    th:field   = "${carFilterForm.gears}"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class = "row">
+                        <div class = "col-md-12">
+                            <div style = "width: 100%; display: flex; justify-content: center; align-content: center;">
+                                <button type = "submit" class ="w-50 btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+             <!--  Car List Items -->
+
+            <div class = "col-md-8" style = "margin-top: 2vh;">
+                <div th:if = "${isListEmpty}" class = "container-fluid">
+                    <div th:each = "carAndReview : ${carsAndReviewAmount}" class = "row border-2 rounded-1 shadow-sm p-3">
+                        <div class = "col-md-4">
+                            <div class = "container-fluid">
+                                <div class = "row">
+                                    <label class= "form-label"><h5>Model</h5><span th:text = "${carAndReview.car.model}"></span></label>
+                                </div>
+                                <br>
+                                <div class = "row">
+                                    <label class ="form-label"><h5>Brand</h5><span  th:text = "${carAndReview.car.brand}"></span></label>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                        <div class = "col-md-4">
+                                <div class = "container-fluid">
+                                    <div class = "row">
+                                        <label class ="form-label"><h5>Gear Type</h5><span th:text = "${carAndReview.car.gearType}"></span></label>
+                                    </div>
+                                    <br>
+                                    <div class = "row">
+                                        <label class ="form-label"><h5>Price</h5><span th:text = "${carAndReview.car.price}" ></span></label>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class = "col-md-4">
+                            <div class = "container">
+                                <br>
+                                <div class = "row">
+                                    <div th:if = "${isReservationList}" class = "row">
+                                        <a th:href = "@{'/customer/car/reserve?carId=' + ${carAndReview.car.id}}" class = "btn btn-primary"> Reserve </a>
+                                    </div>
+                                    <div th:unless = "${isReservationList}" class = "row">
+                                        <a th:href = "@{'/customer/car/request?carId=' + ${carAndReview.car.id}}" class = "btn btn-primary"> Request </a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div th:if = "${carAndReview.amountOfReviews} != 0">
+                                    <a th:href = "@{'/car/review?carId=' + ${carAndReview.car.id}}">Reviews <span th:text = "${carAndReview.amountOfReviews}"></span></a>
+                                </div>
+                                <div th:unless = "${carAndReview.amountOfReviews}">
+                                    <p>This car has no reviews</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div th:unless = "${isListEmpty}" class = "container-fluid">
+                        <h5>There are no cars found with the given search parameters</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace = "fragments/template :: script"></div>
+</body>
+</html>

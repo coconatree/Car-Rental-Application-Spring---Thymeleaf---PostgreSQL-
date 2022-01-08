@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org ">
+    <head>
+        <meta charset="UTF-8">
+        <title>Error Page</title>
+        <div th:replace = "fragments/template :: style"></div>
+    </head>
+    <body>
+        <nav th:replace = "fragments/template :: navbar"></nav>
+
+        <div class = "container-fluid justify-content-center">
+            <div class = "row" style = "min-height: 100px"></div>
+            <div class = "row justify-content-center h-50">
+                <div class = "col-md-8 p-2">
+                    <h3 class = "w-100 title justify-content-center" th:text = "${errorMessage}"></h3>
+                    <a   class = "w-100 btn btn-primary" th:href = "@{${afterwardsPath}}">Continue</a>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace = "fragments/template :: script"></div>
+    </body>
+</html>

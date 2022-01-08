@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation Check</title>
+    <div th:replace = "fragments/template :: style"></div>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        td , th{
+            text-align: center;
+        }
+        h3 {
+            text-align:center;
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            padding: 20px;
+        }
+        table { position: relative; z-index: 1; background-color: whitesmoke;
+            max-width: 84%; border-radius: 30px;
+            margin: 0 auto 100px; padding: 45px; padding-top: 20px; text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); }
+    </style>
+</head>
+<body>
+<nav th:replace = "fragments/template :: navbar"></nav>
+
+<h3>Pending Reservations</h3>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Reservation No</th>
+        <th scope="col">Starting Date</th>
+        <th scope="col">Ending Date</th>
+        <th scope="col">Total Cost</th>
+        <th scope="col">Departure Branch</th>
+        <th scope="col">Destination Branch</th>
+        <th scope="col">Reservation Approve/Decline</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="res, iter: ${customerReservations}">
+        <td th:text="${res.reservationId}"></td>
+        <td th:text="${res.startingDate}"></td>
+        <td th:text="${res.endingDate}"></td>
+        <td th:text="${res.totalCost}"></td>
+        <td th:text="${departureBranches[iter.index]}"></td>
+        <!--- <td th:text="${destinationBranches[iter.index]}"></td> --->
+        <td>
+            <a th:href = "@{'/employee/reservation/approve?resId='+ ${res.reservationId}}" class = "btn btn-success"><span class="material-icons">
+            &#xe876;</span></a>
+            <a th:href = "@{'/employee/reservation/decline?resId=' + ${res.reservationId}}" class = "btn btn-danger"><span class="material-icons">
+            &#xe5cd;</span></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Return Car</title>
+    <div th:replace = "fragments/template :: style"></div>
+
+</head>
+<body>
+<nav th:replace = "fragments/template :: navbar"></nav>
+
+<p>Reservations that you can return</p>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Res. No</th>
+                <th scope="col">Starting Date</th>
+                <th scope="col">Ending Date</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody th:each="res : ${reservationWithCars}">
+            <tr th:if = "${res.reservation.status == 200}">
+
+                <td th:text="${res.reservation.reservationId}">
+
+                </td>
+                <td th:text="${res.reservation.startingDate}"></td>
+                <td th:text="${res.reservation.endingDate}"></td>
+                <td><p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#details5" aria-expanded="false" aria-controls="details5">
+                        See Details
+                    </button>
+                    <div class="collapse" id="details5">
+                        <div class="card card-body">
+                            <p>Cost: <span th:text="${res.reservation.totalCost}"></span></p>
+                            <p>Status:  Finished</p>
+                            <form class = "container m-2" method = "post" th:action = "@{/customer/return}" th:object = "${returnForm}">
+                                <div class = "row justify-content-center p-2">
+                                    <div class = "col-md-6">
+
+                                        <label class = "form-label" for = "branch">Select a branch</label>
+                                        <select  id = "branch" class = "col-5 form-control p-2" th:field = "${returnForm.branchChosen}">
+                                            <option th:each  = "branch : ${allBranches}"
+                                                    th:value = "${branch.id}"
+                                                    th:text  = "${branch.name}">
+                                            </option>
+                                        </select>
+
+                                        <select  id = "resNo" class = "col-5 form-control p-2" th:field = "${returnForm.reservationId}"  style="display:none;">
+                                            <option
+                                                    th:value = "${res.reservation.reservationId}">
+
+                                            </option>
+                                        </select>
+
+                                        <label class = "form-label" for = "branch">Car to be returned</label>
+                                        <select  id = "carId" class = "col-5 form-control p-2" th:field = "${returnForm.carChosen}">
+                                            <option
+                                                    th:value = "${res.car.id}"
+                                                    th:text  = "${res.car.model} + ${res.car.brand}">
+                                            </option>
+                                        </select>
+                                        <br>
+                                        <br>
+                                        <div class = "container-fluid justify-content-center">
+
+                                            <button type = "submit" class = "col-5 btn btn-primary">Return Car</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    </p>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+    <nav th:replace = "fragments/template :: navbar"></nav>
+
+    <div class = "container">
+        <div class = "row min-h-5"></div>
+        <div class = "row min-h-5"></div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class = "row">
+            <form class = "container m-2" method = "post" th:action = "@{/}" th:object = "${branchForm}">
+                <div class = "row justify-content-center p-2">
+                    <div class = "col-md-6">
+                        <label class = "form-label" for = "branch">Select a branch</label>
+                        <select  id = "branch" class = "col-5 form-control p-2" th:field = "${branchForm.preferredBranchId}">
+                            <option th:each  = "branch : ${branches}"
+                                    th:value = "${branch.id}"
+                                    th:text  = "${branch.name}">
+                            </option>
+                        </select>
+                        <br>
+                        <br>
+                        <div class = "container-fluid justify-content-center">
+                            <button type = "submit" class = "col-5 btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<!---
+
+    <div class="slider">
+        <div class="slides">
+            <input type="radio" name="radio-button" id="radio1">
+            <input type="radio" name="radio-button" id="radio2">
+            <input type="radio" name="radio-button" id="radio3">
+            <input type="radio" name="radio-button" id="radio4">
+
+            <div class="first slide">
+             <!- - To Do: I will implement here a slider -- >
+    </div>
+    </div>
+    </div>
+
+-->
+
+</body>
+</html>

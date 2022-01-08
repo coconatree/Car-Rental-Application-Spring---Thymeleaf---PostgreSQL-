@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hire Employee</title>
+    <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+<nav th:replace = "fragments/template :: navbar"></nav>
+
+<div class = "container">
+    <br>
+    <br>
+    <div class = "row">
+        <div class = "col-md-8">
+            <div class = "container m-2 p-2">
+                <form method="post" th:action="@{/manager/hire}" th:object="${hireForm}">
+                    <br>
+                    <div class = "row">
+                        <label class = "form-label"    for = "first_name">First name</label>
+                        <input class = "form-control" id = "first_name" type = "text" th:field="${hireForm.firstName}" placeholder="First name"/>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <label for = "middle_name" class = "form-label">Middle name</label>
+                        <input id = "middle_name" class = "form-control" type = "text" th:field="${hireForm.middleName}" placeholder="Middle name"/>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <label for = "last_name" class = "form-label">Last name</label>
+                        <input id = "last_name" class = "form-control" type = "text" th:field="${hireForm.surname}" placeholder="Last name"/>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <label for = "password" class = "form-label">Password</label>
+                        <input id = "password" class = "form-control" type = "password" th:field="${hireForm.password}" placeholder="Password"/>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <label for = "email" class = "form-label">Email</label>
+                        <input id = "email" class = "form-control" type = "email" th:field="${hireForm.email}" placeholder="Email"/>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <label for = "salary" class = "form-label">Salary</label>
+                        <input id = "salary" class = "form-control" type = "number" max=500000 th:field="${hireForm.salary}" placeholder="Salary"/>
+                    </div>
+                    <br>
+                    <div class = "row">
+                        <button class = "btn btn-primary" type = "submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace = "fragments/template :: script"></div>
+</body>
+</html>

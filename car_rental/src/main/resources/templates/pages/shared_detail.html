@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Shared Detail</title>
+  <div th:replace = "fragments/template :: style"></div>
+</head>
+<body>
+<nav th:replace = "fragments/template :: navbar"></nav>
+<br>
+<div>
+  <div>
+    <form method = "POST" th:actiom = "@{/car/share}" th:object = "${request}">
+      SHARE DETAILS FORM
+      <button type = "submit">Make Request</button>
+    </form>
+  </div>
+</div>
+
+<div th:replace = "fragments/template :: script"></div>
+</body>
+</html>
